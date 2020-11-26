@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-	<title>Document</title>
+	<title>Exercice romuald</title>
 </head>
 <body> 
 <?php
@@ -54,7 +54,7 @@
 		
 	
 	
-	<div class="container mt-5 xs>
+	<div class="container mt-5 xs >
 	<h1 class="text-center mb-4">Ajouter un produit</h1>
     <div class="row shadow p-3 mb-5 bg-white rounded">
         <div class="col-md-12">
@@ -81,7 +81,7 @@
                     <option>3</option>
 					<option>4</option>
 					<option>5</option>
-					<option>6</option>
+					<option>8</option>
                 </select>
             </div>
             <div class="form-group row">
