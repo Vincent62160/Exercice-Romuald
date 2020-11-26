@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-	<title>Document</title>
+	<title>Exercice romuald</title>
 </head>
 <body> 
 <?php
@@ -30,28 +30,14 @@
 		   echo 'echec de la connexion : ' .$e->getMessage();
 	   }
 ?>	  
-	<?php 
-	if(isset($_POST['submit'])){
-		
-    $titre=$_POST['titre'];
-	$description=$_POST['description'];
-	$prix=$_POST['prix'];
-	$category=$_POST['choix'];
-	$datec=$_POST['datec'];
-	$datem=$_POST['datem'];
-	
-	if($titre&&$description&&$prix){
-	
-    $connexion->query("INSERT INTO products VALUES(null,'$titre','$description','$prix','$category','$datec','$datem')");
-	
-	header('Location: products.php');
-    }else{
-		
-		echo'Veuillez remplir tous le champs';
-	}
-	}
-?>	
-		
+
+<?php
+
+           $select=$connexion->query("SELECT id,name FROM categories order by name");
+           $select->execute();
+
+           $data = $select->fetch(PDO::FETCH_OBJ);
+?>		
 	
 	
 	<div class="container mt-5 xs>
@@ -75,13 +61,12 @@
 
             <div class="form-group">
                 <label>Choix de la catégorie</label>
-                <select class="form-control" name="choix">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-					<option>4</option>
-					<option>5</option>
-					<option>6</option>
+                <select type="select"class="form-control" name="choix">
+                    <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
+					 <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
+					  <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
+					   <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
+                   
                 </select>
             </div>
             <div class="form-group row">
@@ -102,4 +87,25 @@
     </div>
 	</body>
 	</html>
+  
+	<?php 
+	if(isset($_POST['submit'])){
+		
+    $titre=$_POST['titre'];
+	$description=$_POST['description'];
+	$prix=$_POST['prix'];
+	$category=$_POST['choix'];
+	$datec=$_POST['datec'];
+	$datem=$_POST['datem'];
 	
+	if($titre&&$description&&$prix){
+	
+    $connexion->query("INSERT INTO products VALUES(null,'$titre','$description','$prix','$category','$datec','$datem')");
+	
+	header('Location: products.php');
+    }else{
+		
+		echo'Veuillez remplir tous le champs';
+	}
+	}
+?>	
