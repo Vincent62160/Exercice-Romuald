@@ -36,11 +36,11 @@
            $select=$connexion->query("SELECT id,name FROM categories order by name");
            $select->execute();
 
-           $data = $select->fetch(PDO::FETCH_OBJ);
+           $data = $select->fetchAll(5);
 ?>		
 	
 	
-	<div class="container mt-5 xs>
+	<div class="container mt-5 xs">
 	<h1 class="text-center mb-4">Ajouter un produit</h1>
     <div class="row shadow p-3 mb-5 bg-white rounded">
         <div class="col-md-12">
@@ -62,10 +62,13 @@
             <div class="form-group">
                 <label>Choix de la catégorie</label>
                 <select type="select"class="form-control" name="choix">
-                    <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
-					 <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
-					  <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
-					   <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
+				<?php
+				foreach($data as $cat){
+				?>
+                    <option value="<?php echo $cat->id; ?>"><?php echo $cat->name; ?></option>
+				<?php
+				}
+				?>
                    
                 </select>
             </div>
