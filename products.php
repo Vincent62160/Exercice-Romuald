@@ -14,8 +14,7 @@
 <<<<<<< HEAD
 	<title>product</title>
 =======
-	<title>Exercice3 Romuald</title>
->>>>>>> products
+
 </head>
 <body> 
 <div class="container mt-4 xs">
@@ -85,12 +84,12 @@
 		
 		
 		    
-		   <a href="lire1.php?id=<?= $cat->id ?>">
+		   <a href="lire.php?id=<?= $cat->id ?>">
 					<button class="btn btn-primary" type="submit"><i class="fa fa-bars" aria-hidden="true"></i> Lire</button>
 		    </a>
 			</th>
 			<th>
-			<a href="modifier1.php?id=<?= $cat->id ?>">
+			<a href="modifier.php?id=<?= $cat->id ?>">
 					<button class="btn btn-warning" type="submit"><i class="fa fa-spinner" aria-hidden="true"></i> Modifier</button>
 			</a>
 			<a href="supprimer.php?id=<?= $cat->id ?>">

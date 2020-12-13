@@ -38,70 +38,63 @@
 		</tr>
 		</thead>
 		<tbody>
-<?php
-
-    // Affichage sur n colonnes
-    // Permet de réaliser l'affichage du résultat
-    // d'une requête dans un tableau sur n colonnes
-
-    $db_server = 'localhost'; // Adresse du serveur MySQL
-    $db_name = 'products';            // Nom de la base de données
-    $db_user_login = 'root';  // Nom de l'utilisateur
-    $db_user_pass = '';       // Mot de passe de l'utilisateur
-
-    // Ouvre une connexion au serveur MySQL
-    $conn = mysqli_connect($db_server,$db_user_login, $db_user_pass, $db_name);
-
-    $req = "SELECT * FROM categories";
-     
-    //--- Résultat ---//
-    $res = mysqli_query($conn,$req);
-	
-    //met les données dans un tableau
-    while($data = mysqli_fetch_array($res))
-    {
-    $tablo[]=$data;
-    }
-    //détermine le nombre de colonnes
-    $nbcol=5;
-
-  
-    $nb=count($tablo);
-    for($i=0;$i<$nb;$i++){
-     
-    //les valeurs à afficher
-    $valeur1=$tablo[$i]['id'];
-    $valeur2=$tablo[$i]['name'];
-    $valeur3=$tablo[$i]['created'];
-	$valeur4=$tablo[$i]['modified'];
-	
-    if($i%$nbcol==0)
-    echo '<tr>';
-    echo '<th>'.$valeur1.'</th>';
-	echo '<td>'.$valeur2.'</td>';
-	echo '<td>'.$valeur3.'</td>';
-	echo '<td>'.$valeur4.'</td>';
-	echo '<td>'.'
-				<a href="lire1.php?id='.$valeur1.'">
-					<button class="btn btn-primary" type="submit"><i class="fa fa-bars" aria-hidden="true"></i> Lire</button>
-				</a>
-				<a href="modifier1.php?id='.$valeur1.'">
-					<button class="btn btn-warning" type="submit"><i class="fa fa-spinner" aria-hidden="true"></i> Modifier</button>
-				</a>
-				<a href="supprimer1.php?id='.$valeur1.'">
-					<button class="btn btn-danger" type="submit"><i class="fa fa-minus-square" aria-hidden="true"></i> Supprimer</button>
-				</a>'.
-			'</td>';
+		<?php
 
 
-    if($i%$nbcol==($nbcol-1))
-	echo '<br>';
-    echo '</tr>';
-	
+$serveur ="localhost";
+	  $login="root";
+	  $pass="";
+	  /* acceder à sa base de donnée*/
+	  try{
+	  $connexion= new PDO("mysql:host=$serveur;dbname=products;charset=utf8;", $login, $pass);
+	  
+	  $connexion-> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+	 
+	 
+	  }
+	  catch(PDOException $e){
+		  echo 'echec de la connexion : ' .$e->getMessage();
+	  }
+?>	 
+<?php 
+     $select=$connexion->query("SELECT * FROM categories");
+	 $select->execute();
 
-    }
-    echo '</table>';
+	 $data = $select->fetchAll(PDO::FETCH_OBJ);
 ?>
+<?php
+  foreach ($data as $cat) {
+	
+	?>
+	<tr> 
+		<th scope="row"><?= $cat->id?></th>
+		<th scope="row"><?= $cat->name?></th>
+		<th scope="row"><?= $cat->created?></th>
+		<th scope="row"><?= $cat->modified?></th>
+		<th scope="col">
+		
+		
+		
+		
+		    
+		   <a href="lire1.php?id=<?= $cat->id ?>">
+					<button class="btn btn-primary" type="submit"><i class="fa fa-bars" aria-hidden="true"></i> Lire</button>
+		    </a>
+			</th>
+			<th>
+			<a href="modifier1.php?id=<?= $cat->id ?>">
+					<button class="btn btn-warning" type="submit"><i class="fa fa-spinner" aria-hidden="true"></i> Modifier</button>
+			</a>
+			<a href="supprimer1.php?id=<?= $cat->id ?>">
+					<button class="btn btn-danger" type="submit"><i class="fa fa-minus-square" aria-hidden="true"></i> Supprimer</button>
+			</a>
+			</th>
+	</tr>
+	
+	<?php
+}
+?>
+  
 </tbody>
 </table>
 </div>
