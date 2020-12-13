@@ -9,11 +9,10 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-<<<<<<< HEAD
-	<title>Exercice romuald2 coucou</title>
-=======
+
+
 	<title>Exercice romuald</title>
->>>>>>> products
+
 </head>
 <body> 
 <?php
@@ -33,7 +32,6 @@
 	   catch(PDOException $e){
 		   echo 'echec de la connexion : ' .$e->getMessage();
 	   }
-<<<<<<< HEAD
 ?>
 	<?php
 
@@ -44,9 +42,7 @@
 ?>	
 	
 	
-	<div class="container mt-5 xs >
-=======
-?>	  
+	 
 
 <?php
 
@@ -58,7 +54,6 @@
 	
 	
 	<div class="container mt-5 xs">
->>>>>>> products
 	<h1 class="text-center mb-4">Ajouter un produit</h1>
     <div class="row shadow p-3 mb-5 bg-white rounded">
         <div class="col-md-12">
@@ -79,11 +74,6 @@
 
             <div class="form-group">
                 <label>Choix de la catégorie</label>
-<<<<<<< HEAD
-               <select type="select"class="form-control" name="choix">
-                    <option value="<?php echo $data->id; ?>"><?php echo $data->name; ?></option>
-					
-=======
                 <select type="select"class="form-control" name="choix">
 				<?php
 				foreach($data as $cat){
@@ -93,7 +83,6 @@
 				}
 				?>
                    
->>>>>>> products
                 </select>
             </div>
             <div class="form-group row">
